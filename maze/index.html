@@ -1,0 +1,32 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="maze.css" />
+    <script src="maze.js"></script>
+    <script src="stopwatch.js"></script>
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <canvas id="canvas-maze" width="500" height="500" tabindex="0"></canvas>
+    <div>
+        <form id="form-new-maze">
+            <label for="input-color">Player Color</label>
+            <input id="input-color" type="color" value="#00AA00">
+            <label for="form-new-maze-size">Size</label>
+            <input id="form-new-maze-size" type="number" value="20" min="3" max="100">
+            <input type="submit" value="Ok">
+        </form>
+        <button id="btn-reset">Reset Position</button>
+        <span>Time: <span id="stopwatch-display">0s</span></span>
+    </div>
+    <h2>Instructions</h2>
+    <ul>
+        <li>You start out in the top left corner, represented by a circle.</li>
+        <li>Your goal is to reach the square in the bottom right corner.</li>
+        <li>Move by using either your arrow keys, or WASD.</li>
+        <li>Make sure the canvas is selected when trying to move!</li>
+    </p>
+</body>
+
+</html>
