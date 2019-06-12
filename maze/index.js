@@ -21,6 +21,7 @@ function newMaze(formEvent = null) {
 
     let size = document.getElementById("form-new-maze-size").value;
     let color = document.getElementById("input-color").value;
+    const checkboxSolution = document.getElementById("check-solve");
 
     const maze = new Maze(size, size);
     maze.onChange = () => maze.draw(canvas, color);
@@ -40,8 +41,9 @@ function newMaze(formEvent = null) {
         stopwatch.reset();
         canvas.focus();
     };
-    document.getElementById("check-solve").onclick = (event) => {
-        maze.showSolution = event.srcElement.checked;
+    maze.showSolution = checkboxSolution.checked;
+    checkboxSolution.onchange = () => {
+        maze.showSolution = checkboxSolution.checked;
         maze.fireChange();
         setTimeout(() => canvas.focus(), 100);
     };
