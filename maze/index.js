@@ -40,6 +40,11 @@ function newMaze(formEvent = null) {
         stopwatch.reset();
         canvas.focus();
     };
+    document.getElementById("check-solve").onclick = (event) => {
+        maze.showSolution = event.srcElement.checked;
+        maze.fireChange();
+        setTimeout(() => canvas.focus(), 100);
+    };
     maze.randomize();
 }
 

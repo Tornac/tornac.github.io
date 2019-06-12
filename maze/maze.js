@@ -11,6 +11,7 @@ class Maze {
                 this.cells.push(cell);
             }
         }
+        this.showSolution = false;
         this.gameOver = false;
         this.cells[width * height - 1].hasGoal = true;
         this.cells[0].hasPlayer = true;
@@ -24,6 +25,8 @@ class Maze {
         const ctx = canvas.getContext("2d");
         const cellWidth = canvas.width / this.width;
         const cellHeight = canvas.height / this.height;
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "black";
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         for (const cell of this.cells) {
@@ -66,14 +69,27 @@ class Maze {
                 ctx.fillRect(west + offsetX, north + offsetY, cellWidth * 0.6, cellWidth * 0.6);
             }
         }
+        if (this.showSolution) {
+            const solution = this.solve();
+            ctx.beginPath();
+            ctx.lineWidth = Math.min(cellWidth, cellHeight) * 0.1;
+            ctx.strokeStyle = "red";
+            for (let i = 0; i < solution.length - 1; i++) {
+                const x1 = (solution[i].x + 0.5) * cellWidth;
+                const y1 = (solution[i].y + 0.5) * cellHeight;
+                const x2 = (solution[i + 1].x + 0.5) * cellWidth;
+                const y2 = (solution[i + 1].y + 0.5) * cellHeight;
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+            }
+            ctx.stroke();
+        }
         console.timeEnd("draw canvas");
     }
 
-
-
     movePlayer(direction) {
         if (this.gameOver) return;
-        
+
         const origin = this.cells.find(x => x.hasPlayer);
         let destination = null;
         switch (direction) {
@@ -119,7 +135,7 @@ class Maze {
 
     randomize() {
         const seen = new Set();
-        const stack = [this.cells[0]];
+        const stack = [this.cells[randint(0, this.cells.length)]];
         while (stack.length > 0) {
             shuffle(stack);
             const top = stack.pop();
@@ -139,6 +155,32 @@ class Maze {
         this.cells.forEach(x => x.hasPlayer = false);
         this.cells[0].hasPlayer = true;
         this.fireChange();
+    }
+
+    /** @returns {Array<MazeCell>} path from player position to goal */
+    solve() {
+        const worklist = [this.cells.find(x => x.hasPlayer)];
+        const destination = this.cells.find(x => x.hasGoal);
+        const seen = new Set();
+        const predecessor = new Map();
+        while (worklist.length > 0) {
+            const top = worklist.shift();
+            seen.add(top);
+            top.adjacentCells()
+                .filter(x => !seen.has(x))
+                .forEach(x => {
+                    worklist.push(x);
+                    predecessor.set(x, top);
+                    if (top === destination) worklist.length = 0;
+                });
+        }
+        let current = destination;
+        const path = [];
+        while (current !== undefined) {
+            path.push(current);
+            current = predecessor.get(current);
+        }
+        return path.reverse();
     }
 
     fireChange() { if (this.onChange) this.onChange(); }
@@ -179,6 +221,11 @@ class MazeCell {
 
     toString() {
         return `MazeCell(${this.x}, ${this.y})`;
+    }
+
+    adjacentCells() {
+        return [this.north, this.south, this.west, this.east]
+            .filter(x => x !== null);
     }
 }
 
