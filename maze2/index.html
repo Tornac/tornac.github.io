@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="index.css">
+    <script src="bundle.js"></script>
+</head>
+
+<body>
+    <canvas width="500" height="500"></canvas>
+    <section>
+        <span>Time</span>
+        <span id="stopwatch">0s</span>
+        <label for="input-size">Size</label>
+        <input id="input-size" type="number" value="20" min="3" max="100" />
+        <label for="select-randomizer">Randomizer</label>
+        <select id="select-randomizer">
+            <option value="dfs1">Randomized DFS (from 0, 0)</option>
+            <option value="dfs2">Randomized DFS (random origin)</option>
+        </select>
+        <label for="input-show-solution">Show Solution</label>
+        <input id="input-show-solution" type="checkbox">
+    </section>
+    <h2>Instructions</h2>
+    <ul>
+        <li>You start out in the top left corner, represented by a circle.</li>
+        <li>Your goal is to reach the square in the bottom right corner.</li>
+        <li>Move by using either your arrow keys.</li>
+    </ul>
+    <h2>Stats for Current Randomizer <button id="btn-show-stats">show</button></h2>
+    <div id="chart-container"></div>
+    <h2>Takeaways</h2>
+    <ul>
+        <li>It makes almost no difference where the DFS starts.</li>
+    </ul>
+</body>
+
+</html>
