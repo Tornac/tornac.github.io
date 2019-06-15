@@ -27,14 +27,19 @@ export function makeChart(randomizer: MazeRandomizer, targetElement: HTMLElement
     const yAxis = [];
     for (let size = 3; size <= 40; size++) {
         const lengths: Array<number> = [];
-        for (let i = 0; i < 100; i++) {
-            const maze = new Maze(size, size);
-            maze.randomize(randomizer);
-            const solution = maze.solve();
-            lengths.push(solution.length);
+        try {
+            for (let i = 0; i < 100; i++) {
+                const maze = new Maze(size, size);
+                maze.randomize(randomizer);
+                const solution = maze.solve();
+                lengths.push(solution.length);
+            }
+            xAxis.push(size);
+            yAxis.push(median(lengths));
+        } catch {
+            // since not all maze sizes are legal for every randomizer
+            // silently ignore errors
         }
-        xAxis.push(size);
-        yAxis.push(median(lengths));
     }
     const chartOptions: ApexOptions = {
         chart: {
