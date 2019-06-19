@@ -1,10 +1,11 @@
 {
-  "name": "trywebp",
+  "name": "maze2",
   "version": "1.0.0",
   "description": "",
   "private": true,
   "scripts": {
-    "build": "tsc && webpack"
+    "build": "tsc && webpack",
+    "test": "tsc && mocha compiled_js/test/**/*.test.js"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +15,10 @@
     "jquery": "^3.4.1"
   },
   "devDependencies": {
+    "@types/assert": "^1.4.2",
     "@types/jquery": "^3.3.29",
+    "@types/mocha": "^5.2.7",
+    "mocha": "^6.1.4",
     "typescript": "^3.5.1",
     "webpack": "^4.34.0",
     "webpack-cli": "^3.3.4"

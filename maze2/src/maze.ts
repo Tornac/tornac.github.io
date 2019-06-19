@@ -14,6 +14,8 @@ export class MazeCell {
     east: MazeCellConnection = { blocked: true, cell: null }
 
     constructor(x: number, y: number) {
+        if (x < 0 || y < 0 || !Number.isInteger(x) || !Number.isInteger(y))
+            throw new Error("illegal coordinates");
         this.x = x;
         this.y = y;
     }
@@ -46,7 +48,7 @@ export class MazeCell {
             second.north.cell = first;
             second.north.blocked = false;
         } else {
-            throw "could not connect cells";
+            throw new Error("cannot connect non-adjacent cells");
         }
     }
 }
