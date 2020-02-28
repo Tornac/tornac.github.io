@@ -1,8 +1,20 @@
 body {
+    width: 90%;
+    max-width: 750px;
+    margin: auto;
     font-family: sans-serif;
     font-size: 16px;
+    text-align: justify;
 }
 
 section.projects li>a {
     margin-left: 5px;
+}
+
+h1 {
+    font-size: 200%;
+}
+
+h2 {
+    font-size: 150%;
 }
