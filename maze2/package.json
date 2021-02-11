@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apexcharts": "^3.8.0",
+    "apexcharts": "^3.24.0",
     "jquery": "^3.4.1"
   },
   "devDependencies": {
