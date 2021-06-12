@@ -20,7 +20,8 @@ button {
     font-size: 10vw;
 }
 
-td, th {
+td,
+th {
     padding: 2px;
 }
 
@@ -29,8 +30,13 @@ table#lap-config input {
 }
 
 table#lap-config button {
-    border-radius: 10px;
+    border-radius: 40px;
     font-size: 75%;
     vertical-align: center;
     align-content: center;
+    width: 30px;
+}
+
+.checkmark-container {
+    color: green;
 }
