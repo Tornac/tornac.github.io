@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+        <link href="./reset.css" rel="stylesheet" />
+        <link href="./index.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <script src="./index.js" defer></script>
+    </head>
+
+    <body></body>
+</html>
+
+<section>
+    <p id="elapsed" class="time">00:00.0</p>
+    <button id="start" onclick="stopwatchToggle()">Start/Pause</button>
+    <button id="stop" onclick="stopwatchReset()" disabled>Reset</button>
+</section>
+<section>
+    <p id="instruction">Run/Walk</p>
+    <p id="remaining" class="time">00:00.0</p>
+</section>
+
+<section>
+    <table id="lap-config">
+        <thead>
+            <tr>
+                <th>Run</th>
+                <th>Walk</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="number" placeholder="sec" value="60" min="1" /></td>
+                <td><input type="number" placeholder="sec" value="60" max="3600" /></td>
+                <td><button onclick="cloneRow(this)">+</button></td>
+            </tr>
+        </tbody>
+    </table>
+</section>

@@ -1,0 +1,36 @@
+body {
+    font-family: "Roboto Mono";
+    font-size: 30px;
+    padding: 10px;
+}
+
+section {
+    border: 1px solid gray;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+p.time {
+    display: grid;
+    font-size: 20vw;
+    grid-template-columns: 2fr 1fr 2fr 1fr 1fr;
+}
+
+button {
+    font-size: 10vw;
+}
+
+td, th {
+    padding: 2px;
+}
+
+table#lap-config input {
+    width: 100px;
+}
+
+table#lap-config button {
+    border-radius: 10px;
+    font-size: 75%;
+    vertical-align: center;
+    align-content: center;
+}
